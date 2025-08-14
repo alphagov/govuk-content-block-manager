@@ -1,0 +1,30 @@
+{
+  "name": "govuk-content-block-manager",
+  "description": "Create and manage re-usable blocks of content",
+  "private": true,
+  "author": "Government Digital Service",
+  "license": "MIT",
+  "scripts": {
+    "lint": "yarn run lint:js && yarn run lint:scss",
+    "lint:js": "eslint --cache --cache-location .cache/eslint --color -- \"**/*.js\"",
+    "lint:scss": "stylelint app/assets/stylesheets/",
+    "lint:prettier": "prettier --cache --cache-location .cache/prettier --cache-strategy content --check -- \"**/*.{js,scss}\"",
+    "lint:prettier:fix": "prettier --write \"**/*.{js,scss}\""
+  },
+  "packageManager": "yarn@4.9.2",
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.33.0",
+    "eslint": "^9.33.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-n": "^17.21.3",
+    "eslint-plugin-promise": "^7.2.1",
+    "globals": "^16.3.0",
+    "prettier": "^3.6.2",
+    "standard": "^17.1.2",
+    "stylelint": "^16.23.1",
+    "stylelint-config-gds": "^2.0.0"
+  }
+}

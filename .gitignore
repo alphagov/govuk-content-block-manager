@@ -10,6 +10,9 @@
 # Ignore all environment files.
 /.env*
 
+# Ignore caches
+.cache
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -35,3 +38,7 @@
 
 # Ignore version files other than .ruby-version
 mise.toml
+
+# Ignore JS artefacts
+node_modules
+.yarn
