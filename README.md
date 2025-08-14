@@ -1,24 +1,10 @@
-# README
+# Content Block Manager
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Content Block Manager is a tool for publishers to create and manage reusable
+blocks of content such as a simple ["Pension rate"][] or a complex ["Contact"][].
 
-Things you may want to cover:
+["Pension rate"]:
+https://github.com/alphagov/publishing-api/blob/main/content_schemas/formats/content_block_pension.jsonnet
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+["Contact"]:
+https://github.com/alphagov/publishing-api/blob/main/content_schemas/formats/content_block_contact.jsonnet
