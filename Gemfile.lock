@@ -242,6 +242,9 @@ GEM
     mime-types-data (3.2025.0812)
     mini_mime (1.1.5)
     minitest (5.25.5)
+    minitest-fail-fast (0.1.0)
+      minitest (~> 5)
+    minitest-stub-const (0.6)
     msgpack (1.8.0)
     multi_xml (0.7.2)
       bigdecimal (~> 3.1)
@@ -746,6 +749,9 @@ DEPENDENCIES
   govuk_publishing_components
   govuk_test
   jbuilder
+  minitest
+  minitest-fail-fast
+  minitest-stub-const
   pg (~> 1.1)
   plek
   pry-byebug
