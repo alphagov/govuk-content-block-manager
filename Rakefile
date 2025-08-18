@@ -16,4 +16,4 @@ Minitest::TestTask.create do |t|
 end
 
 Rake::Task[:default].clear if Rake::Task.task_defined?(:default)
-task default: %i[lint]
+task default: %i[lint test]
