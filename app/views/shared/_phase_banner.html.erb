@@ -1,0 +1,13 @@
+<%= render "govuk_publishing_components/components/phase_banner", {
+    phase: "Beta",
+    message: sanitize("For support, to delete a content block or to give feedback, email
+        #{
+      mail_to(
+        "email@example.com",
+        "email@example.com",
+        {
+          class: "govuk-link",
+        },
+        )
+    }.", attributes: %w(class href)),
+  } %>

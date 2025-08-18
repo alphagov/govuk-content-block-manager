@@ -1,15 +1,18 @@
 source "https://rubygems.org"
 
 gem "bootsnap", require: false
+gem "dartsass-rails"
 gem "gds-api-adapters"
 gem "gds-sso"
 gem "govuk_app_config"
+gem "govuk_frontend_toolkit"
 gem "govuk_publishing_components"
 gem "jbuilder"
 gem "pg", "~> 1.1"
 gem "plek"
 gem "puma", ">= 5.0"
 gem "rails", "~> 8.0.2", ">= 8.0.2.1"
+gem "sprockets-rails"
 gem "thruster", require: false
 gem "tzinfo-data", platforms: %i[windows jruby]
 
