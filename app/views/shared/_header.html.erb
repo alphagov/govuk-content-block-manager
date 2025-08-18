@@ -1,0 +1,30 @@
+<% environment = GovukPublishingComponents::AppHelpers::Environment.current_acceptance_environment %>
+<% organisation = current_user&.organisation %>
+<% user = current_user %>
+
+<%= render "govuk_publishing_components/components/layout_header", {
+  data_attributes: {
+    ga4_link: '{ "event_name": "navigation", "type": "generic_link" }',
+    module: "ga4-link-tracker",
+    ga4_no_copy: true,
+  },
+  product_name:,
+  environment: environment,
+  navigation_items: [
+    main_nav_item("Dashboard", "/"),
+    {
+      text: "View website",
+      href: "/",
+    },
+    main_nav_item("All users", "/"),
+  ],
+} %>
+
+<div class="govuk-width-container" data-module="ga4-link-tracker" data-ga4-link='{ "event_name": "navigation", "type": "generic_link" }'>
+  <%= render "components/sub_navigation", {
+    items: [
+      sub_nav_item("New document", "/"),
+      sub_nav_item("Documents", "/"),
+    ],
+  } %>
+</div>

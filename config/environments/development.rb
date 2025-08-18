@@ -20,13 +20,33 @@ Rails.application.configure do
   if Rails.root.join("tmp/caching-dev.txt").exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
+
+    config.cache_store = :memory_store
     config.public_file_server.headers = { "cache-control" => "public, max-age=#{2.days.to_i}" }
   else
     config.action_controller.perform_caching = false
+
+    config.cache_store = :null_store
   end
 
-  # Change to :null_store to avoid any caching.
-  config.cache_store = :memory_store
+  # Debug mode disables concatenation and preprocessing of assets.
+  # This option may cause significant delays in view rendering with a large
+  # number of complex assets.
+  config.assets.debug = ENV["DISABLE_ASSETS_DEBUG"].nil?
+
+  # Asset digests allow you to set far-future HTTP expiration dates on all assets,
+  # yet still be able to expire them through the digest params.
+  config.assets.digest = false
+
+  # Suppress logger output for asset requests.
+  config.assets.quiet = false
+
+  # Adds additional error checking when serving assets at runtime.
+  # Checks for improperly declared sprockets dependencies.
+  # Raises helpful error messages.
+  config.assets.raise_runtime_errors = true
+
+  config.assets.cache_store = :null_store
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -42,6 +62,8 @@ Rails.application.configure do
 
   # Highlight code that enqueued background job in logs.
   config.active_job.verbose_enqueue_logs = true
+
+  config.hosts.clear
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
