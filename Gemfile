@@ -17,6 +17,7 @@ group :development, :test do
   gem "brakeman", require: false
   gem "byebug"
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
+  gem "erb_lint"
   gem "govuk_test"
   gem "rspec-rails"
   gem "rubocop-govuk"
