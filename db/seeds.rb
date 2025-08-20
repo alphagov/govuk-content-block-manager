@@ -1,9 +1,11 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+return if Rails.env.test?
+
+gds_organisation_id = "af07d5a5-df63-4ddc-9383-6a666845ebe9"
+User.create!(
+  name: "Test user",
+  uid: "test-user-1",
+  email: "test@gds.example.com",
+  permissions: ["signin", "GDS Admin", "GDS Editor", "Managing Editor", "Sidekiq Admin"],
+  organisation_content_id: gds_organisation_id,
+  organisation_slug: "government-digital-service",
+)
