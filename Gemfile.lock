@@ -75,8 +75,13 @@ GEM
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.3)
+    babosa (2.0.0)
     base64 (0.3.0)
     benchmark (0.4.1)
+    better_errors (2.10.1)
+      erubi (>= 1.0.0)
+      rack (>= 0.9.0)
+      rouge (>= 1.0.0)
     better_html (2.1.1)
       actionview (>= 6.0)
       activesupport (>= 6.0)
@@ -85,7 +90,8 @@ GEM
       parser (>= 2.4)
       smart_properties
     bigdecimal (3.2.2)
-    bindex (0.8.1)
+    binding_of_caller (1.0.1)
+      debug_inspector (>= 1.2.0)
     bootsnap (1.18.6)
       msgpack (~> 1.2)
     brakeman (7.1.0)
@@ -101,17 +107,63 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    capybara-playwright-driver (0.5.7)
+      addressable
+      capybara
+      playwright-ruby-client (>= 1.16.0)
+    childprocess (5.1.0)
+      logger (~> 1.5)
     coderay (1.1.3)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.3)
+    content_block_tools (1.0.3)
+      actionview (>= 6)
+      govspeak (= 10.6.1)
+    crack (1.0.0)
+      bigdecimal
+      rexml
     crass (1.0.6)
+    cucumber (9.2.1)
+      builder (~> 3.2)
+      cucumber-ci-environment (> 9, < 11)
+      cucumber-core (> 13, < 14)
+      cucumber-cucumber-expressions (~> 17.0)
+      cucumber-gherkin (> 24, < 28)
+      cucumber-html-formatter (> 20.3, < 22)
+      cucumber-messages (> 19, < 25)
+      diff-lcs (~> 1.5)
+      mini_mime (~> 1.1)
+      multi_test (~> 1.1)
+      sys-uname (~> 1.2)
+    cucumber-ci-environment (10.0.1)
+    cucumber-core (13.0.3)
+      cucumber-gherkin (>= 27, < 28)
+      cucumber-messages (>= 20, < 23)
+      cucumber-tag-expressions (> 5, < 7)
+    cucumber-cucumber-expressions (17.1.0)
+      bigdecimal
+    cucumber-gherkin (27.0.0)
+      cucumber-messages (>= 19.1.4, < 23)
+    cucumber-html-formatter (21.14.0)
+      cucumber-messages (> 19, < 28)
+    cucumber-messages (22.0.0)
+    cucumber-rails (3.1.1)
+      capybara (>= 3.11, < 4)
+      cucumber (>= 5, < 10)
+      railties (>= 5.2, < 9)
+    cucumber-tag-expressions (6.1.2)
     dartsass-rails (0.5.1)
       railties (>= 6.0.0)
       sass-embedded (~> 1.63)
+    database_cleaner-active_record (2.2.2)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0)
+    database_cleaner-core (2.0.1)
     date (3.4.1)
     debug (1.11.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    debug_inspector (1.2.0)
     diff-lcs (1.6.2)
     docile (1.4.1)
     domain_name (0.6.20240107)
@@ -125,12 +177,24 @@ GEM
       rubocop (>= 1)
       smart_properties
     erubi (1.13.1)
+    factory_bot (6.5.5)
+      activesupport (>= 6.1.0)
     faraday (2.13.4)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
     faraday-net_http (3.4.1)
       net-http (>= 0.5.0)
+    ffi (1.17.2-aarch64-linux-gnu)
+    ffi (1.17.2-aarch64-linux-musl)
+    ffi (1.17.2-arm-linux-gnu)
+    ffi (1.17.2-arm-linux-musl)
+    ffi (1.17.2-arm64-darwin)
+    ffi (1.17.2-x86_64-darwin)
+    ffi (1.17.2-x86_64-linux-gnu)
+    ffi (1.17.2-x86_64-linux-musl)
+    friendly_id (5.5.1)
+      activerecord (>= 4.0.0)
     gds-api-adapters (101.0.0)
       addressable
       link_header
@@ -172,6 +236,16 @@ GEM
       rake (>= 13)
     googleapis-common-protos-types (1.20.0)
       google-protobuf (>= 3.18, < 5.a)
+    govspeak (10.6.1)
+      actionview (>= 6, < 8.0.3)
+      addressable (>= 2.3.8, < 2.8.8)
+      govuk_publishing_components (>= 43)
+      htmlentities (~> 4)
+      i18n (>= 0.7, < 1.14.8)
+      kramdown (>= 2.3.1, < 2.5.2)
+      nokogiri (~> 1.12)
+      rinku (~> 2.0)
+      sanitize (>= 6, < 8)
     govuk_app_config (9.19.1)
       logstasher (~> 2.1)
       opentelemetry-exporter-otlp (>= 0.25, < 0.31)
@@ -204,7 +278,9 @@ GEM
       capybara (>= 3.36)
       puma
       selenium-webdriver (>= 4.0)
+    hashdiff (1.2.0)
     hashie (5.0.0)
+    htmlentities (4.3.4)
     http-accept (1.7.0)
     http-cookie (1.0.8)
       domain_name (~> 0.5)
@@ -221,9 +297,25 @@ GEM
     json (2.13.2)
     jwt (3.1.2)
       base64
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     kramdown (2.5.1)
       rexml (>= 3.3.9)
     language_server-protocol (3.17.0.5)
+    launchy (3.1.1)
+      addressable (~> 2.8)
+      childprocess (~> 5.0)
+      logger (~> 1.6)
     link_header (0.0.8)
     lint_roller (1.1.0)
     logger (1.7.0)
@@ -250,7 +342,10 @@ GEM
     minitest-fail-fast (0.1.0)
       minitest (~> 5)
     minitest-stub-const (0.6)
+    mocha (2.7.1)
+      ruby2_keywords (>= 0.0.5)
     msgpack (1.8.0)
+    multi_test (1.1.0)
     multi_xml (0.7.2)
       bigdecimal (~> 3.1)
     net-http (0.6.0)
@@ -526,6 +621,9 @@ GEM
     pg (1.6.1-x86_64-darwin)
     pg (1.6.1-x86_64-linux)
     pg (1.6.1-x86_64-linux-musl)
+    playwright-ruby-client (1.54.1)
+      concurrent-ruby (>= 1.1.6)
+      mime-types (>= 3.0)
     plek (5.2.2)
     pp (0.6.2)
       prettyprint
@@ -596,6 +694,8 @@ GEM
     rdoc (6.14.2)
       erb
       psych (>= 4.0.0)
+    record_tag_helper (1.0.1)
+      actionview (>= 5)
     regexp_parser (2.11.2)
     reline (0.6.2)
       io-console (~> 0.5)
@@ -607,6 +707,7 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.4.1)
+    rinku (2.0.6)
     rouge (4.6.0)
     rspec-core (3.13.5)
       rspec-support (~> 3.13.0)
@@ -662,7 +763,11 @@ GEM
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
     ruby-progressbar (1.13.0)
+    ruby2_keywords (0.0.5)
     rubyzip (3.0.1)
+    sanitize (7.0.0)
+      crass (~> 1.0.2)
+      nokogiri (>= 1.16.8)
     sass-embedded (1.90.0-aarch64-linux-gnu)
       google-protobuf (~> 4.31)
     sass-embedded (1.90.0-aarch64-linux-musl)
@@ -712,6 +817,8 @@ GEM
       sprockets (>= 3.0.0)
     statsd-ruby (1.5.0)
     stringio (3.1.7)
+    sys-uname (1.3.1)
+      ffi (~> 1.1)
     thor (1.4.0)
     thruster (0.1.15)
     thruster (0.1.15-aarch64-linux)
@@ -719,6 +826,7 @@ GEM
     thruster (0.1.15-x86_64-darwin)
     thruster (0.1.15-x86_64-linux)
     timeout (0.4.3)
+    transitions (1.3.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (3.1.4)
@@ -727,15 +835,17 @@ GEM
     uri (1.0.3)
     useragent (0.16.11)
     version_gem (1.1.8)
+    view_component (4.0.2)
+      activesupport (>= 7.1.0, < 8.1)
+      concurrent-ruby (~> 1)
     warden (1.2.9)
       rack (>= 2.0.9)
     warden-oauth2 (0.0.1)
       warden
-    web-console (4.2.1)
-      actionview (>= 6.0.0)
-      activemodel (>= 6.0.0)
-      bindex (>= 0.4.0)
-      railties (>= 6.0.0)
+    webmock (3.25.1)
+      addressable (>= 2.8.0)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
     webrick (1.9.1)
     websocket (1.2.11)
     websocket-driver (0.8.0)
@@ -759,12 +869,23 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  babosa
+  better_errors
+  binding_of_caller
   bootsnap
   brakeman
   byebug
+  capybara
+  capybara-playwright-driver
+  content_block_tools
+  cucumber
+  cucumber-rails
   dartsass-rails
+  database_cleaner-active_record
   debug
   erb_lint
+  factory_bot
+  friendly_id
   gds-api-adapters
   gds-sso
   govuk_app_config
@@ -772,22 +893,28 @@ DEPENDENCIES
   govuk_publishing_components
   govuk_test
   jbuilder
+  kaminari
+  launchy
   minitest
   minitest-fail-fast
   minitest-stub-const
+  mocha
   pg (~> 1.1)
   plek
   pry-byebug
   pry-rails
   puma (>= 5.0)
   rails (~> 8.0.2, >= 8.0.2.1)
+  record_tag_helper
   rspec-rails
   rubocop-govuk
   simplecov
   sprockets-rails
   thruster
+  transitions
   tzinfo-data
-  web-console
+  view_component
+  webmock
 
 BUNDLED WITH
    2.6.9
