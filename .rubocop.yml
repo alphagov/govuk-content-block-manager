@@ -18,6 +18,33 @@ inherit_mode:
 # See https://github.com/alphagov/rubocop-govuk/blob/main/CONTRIBUTING.md
 # **************************************************************
 
+# This has special infrastructure for one-time data
+# migration tasks, for which it's common to write to
+# STDOUT using 'puts'.
+Rails/Output:
+  Exclude:
+    - 'db/data_migration/*.rb'
+
+# This alerts on methods that aren't introduced until rails 6.0
+# it should be removed when we upgrade.
+Style/HashEachMethods:
+  Enabled: false
+
+# This application uses inheritance as a means to set before_actions for
+# permissions, this approach conflicts with this cop.
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+
+# Sidekiq jobs don't support keyword arguments which make this cop hard
+# to apply while maintaining backwards compatibility.
+Style/OptionalBooleanParameter:
+  Exclude:
+    - 'app/sidekiq/*.rb'
+
+Lint/MissingSuper:
+  Exclude:
+    - 'app/components/**/*.rb'
+
 Rails/SaveBang:
   Exclude:
     - 'Rakefile'
