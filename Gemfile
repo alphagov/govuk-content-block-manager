@@ -4,6 +4,7 @@ gem "babosa"
 gem "bootsnap", require: false
 gem "content_block_tools"
 gem "dartsass-rails"
+gem "flipflop"
 gem "friendly_id"
 gem "gds-api-adapters"
 gem "gds-sso"
@@ -11,6 +12,7 @@ gem "govuk_app_config"
 gem "govuk_frontend_toolkit"
 gem "govuk_publishing_components"
 gem "jbuilder"
+gem "json_schemer"
 gem "kaminari"
 gem "pg", "~> 1.1"
 gem "plek"
@@ -37,12 +39,16 @@ end
 
 group :test do
   gem "database_cleaner-active_record"
+  gem "equivalent-xml"
   gem "factory_bot"
+  gem "govuk_schemas"
+  gem "maxitest"
   gem "minitest"
   gem "minitest-fail-fast"
   gem "minitest-stub-const"
   gem "mocha"
   gem "simplecov"
+  gem "timecop"
   gem "webmock", require: false
 end
 
