@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_20_105744) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_21_105005) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -29,6 +29,24 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_20_105744) do
     t.index ["live_edition_id"], name: "index_content_block_documents_on_live_edition_id"
   end
 
+  create_table "content_block_edition_authors", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "edition_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["edition_id"], name: "index_content_block_edition_authors_on_edition_id"
+    t.index ["user_id"], name: "index_content_block_edition_authors_on_user_id"
+  end
+
+  create_table "content_block_edition_organisations", force: :cascade do |t|
+    t.integer "content_block_edition_id", null: false
+    t.integer "organisation_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["content_block_edition_id"], name: "idx_on_content_block_edition_id_e433bc9b13"
+    t.index ["organisation_id"], name: "index_content_block_edition_organisations_on_organisation_id"
+  end
+
   create_table "content_block_editions", force: :cascade do |t|
     t.json "details", null: false
     t.integer "document_id", null: false
@@ -43,6 +61,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_20_105744) do
     t.datetime "updated_at", null: false
     t.index ["document_id"], name: "index_content_block_editions_on_document_id"
     t.index ["title"], name: "index_content_block_editions_on_title"
+  end
+
+  create_table "content_block_versions", force: :cascade do |t|
+    t.text "item_type", null: false
+    t.integer "item_id", null: false
+    t.integer "event", null: false
+    t.text "whodunnit"
+    t.text "state"
+    t.json "field_diffs"
+    t.text "updated_embedded_object_type"
+    t.text "updated_embedded_object_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_content_block_versions_on_item_id"
+    t.index ["item_type"], name: "index_content_block_versions_on_item_type"
   end
 
   create_table "organisations", force: :cascade do |t|
