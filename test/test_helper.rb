@@ -10,6 +10,7 @@ end
 
 require File.expand_path("../config/environment", __dir__)
 
+require "maxitest/autorun"
 require "rails/test_help"
 require "mocha/minitest"
 require "factories"
@@ -24,20 +25,22 @@ end
 
 class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
-  # include ModelHelpers
-  # include ModelStubbingHelpers
-  # include HtmlAssertions
-  # include I18nHelpers
+  include ModelHelpers
+  include ModelStubbingHelpers
+  include HtmlAssertions
+  include I18nHelpers
   include PublishingApiTestHelpers
-  # include GovukSchemas::AssertMatchers
-  # include UrlHelpers
-  # extend GovspeakValidationTestHelper
+  include GovukSchemas::AssertMatchers
+  include UrlHelpers
+  extend GovspeakValidationTestHelper
 
   if ENV["RUN_IN_PARALLEL"] == "false"
     parallelize(workers: 1) # Run tests sequentially
   else
     parallelize(workers: :number_of_processors) # Run tests in parallel
   end
+
+  attr_reader :feature_flags
 
   # Fix the merging of coverage reports from parallel processes when using
   # Rails 6 parallelization rather than parallel_tests
@@ -53,9 +56,13 @@ class ActiveSupport::TestCase
   end
 
   setup do
+    @feature_flags = Flipflop::FeatureSet.current.test!
     Timecop.freeze(2011, 11, 11, 11, 11, 11)
     stub_any_publishing_api_call
     stub_publishing_api_publish_intent
+    Services.publishing_api.stubs(:get_events_for_content_id).returns([])
+    Services.stubs(:asset_manager).returns(stub_everything("asset-manager"))
+    TaxonValidator.any_instance.stubs(:validate)
   end
 
   teardown do
@@ -171,6 +178,8 @@ class ActionController::TestCase
 
   setup do
     request.env["warden"] = stub(authenticate!: false, authenticated?: false, user: nil)
+
+    @feature_flags = Flipflop::FeatureSet.current.test!
 
     # In controller tests, stub out all calls to the content store. This
     # implies that by default we don't care about responses from this endpoint,
