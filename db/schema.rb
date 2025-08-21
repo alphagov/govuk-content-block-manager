@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_21_105005) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_21_161900) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -76,6 +76,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_21_105005) do
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_content_block_versions_on_item_id"
     t.index ["item_type"], name: "index_content_block_versions_on_item_type"
+  end
+
+  create_table "flipflop_features", force: :cascade do |t|
+    t.text "key", null: false
+    t.boolean "enabled", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["key"], name: "index_flipflop_features_on_key"
   end
 
   create_table "organisations", force: :cascade do |t|
