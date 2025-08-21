@@ -36,6 +36,11 @@ module GovukContentBlockManager
     #
     # config.time_zone = "Central Time (US & Canada)"
 
+    # Allows us to add custom full messages to locale files which will override
+    # overrides the default behaviour of full_message and returns the translation
+    # when a translation is present
+    config.active_model.i18n_customize_full_message = true
+
     config.eager_load_paths += %W[
       #{config.root}/lib
     ]
