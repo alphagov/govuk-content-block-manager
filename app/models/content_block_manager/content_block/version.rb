@@ -5,7 +5,7 @@ module ContentBlockManager
 
       belongs_to :item, polymorphic: true
       validates :event, presence: true
-      belongs_to :user, foreign_key: "whodunnit"
+      belongs_to :user, foreign_key: "whodunnit", optional: true
 
       def field_diffs
         self[:field_diffs] ? ContentBlock::DiffItem.from_hash(self[:field_diffs]) : {}
