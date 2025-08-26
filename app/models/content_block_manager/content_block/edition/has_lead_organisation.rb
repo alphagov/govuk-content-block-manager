@@ -6,7 +6,7 @@ module ContentBlockManager
       has_one :edition_organisation, foreign_key: :content_block_edition_id,
                                      dependent: :destroy,
                                      class_name: "ContentBlockManager::ContentBlock::EditionOrganisation"
-      has_one :organisation, through: :edition_organisation
+      has_one :organisation, through: :edition_organisation, class_name: "Organisation"
 
       validates_with ContentBlockManager::OrganisationValidator
     end
