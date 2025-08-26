@@ -16,6 +16,7 @@ require "mocha/minitest"
 require "factories"
 require "webmock/minitest"
 require "govuk_schemas/assert_matchers"
+require "govuk_sidekiq/testing"
 
 Dir[Rails.root.join("test/support/*.rb")].sort.each { |f| require f }
 
