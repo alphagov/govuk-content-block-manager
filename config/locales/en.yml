@@ -94,3 +94,10 @@ en:
           welsh_language: "Welsh language"
           telephone: "Telephone"
           textphone: "Textphone"
+  date:
+    formats:
+      default: "%d %B %Y"
+      long_ordinal: "%e %B %Y"
+  time:
+    formats:
+      long_ordinal: "%e %B %Y %l:%M%P"
