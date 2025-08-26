@@ -4,7 +4,7 @@ require "uri"
 
 module ContentBlockManager
   class GeneratePreviewHtml
-    include ContentBlockManager::Engine.routes.url_helpers
+    include Rails.application.routes.url_helpers
 
     def initialize(content_id:, content_block_edition:, base_path:, locale:)
       @content_id = content_id
