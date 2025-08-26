@@ -43,7 +43,7 @@ module ContentBlockManager
       {
         schema_name: schema_id,
         document_type: schema_id,
-        publishing_app: Whitehall::PublishingApp::WHITEHALL,
+        publishing_app: ContentBlockManager::PublishingApp::CONTENT_BLOCK_MANAGER,
         title: content_block_edition.title,
         instructions_to_publishers: content_block_edition.instructions_to_publishers,
         content_id_alias:,
