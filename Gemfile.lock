@@ -940,6 +940,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 8.0.2, >= 8.0.2.1)
   record_tag_helper
+  rinku
   rspec-rails
   rubocop-govuk
   simplecov
