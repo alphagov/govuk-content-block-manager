@@ -23,5 +23,5 @@ module.exports = defineConfig([
       }
     }
   },
-  globalIgnores(['app/assets/javascripts/vendor/'])
+  globalIgnores(['app/assets/javascripts/vendor/', 'coverage/'])
 ])
