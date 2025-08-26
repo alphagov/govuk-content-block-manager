@@ -1,13 +1,14 @@
 module ContentBlockManager
   class ContentBlock::Document::DocumentFilter
     FILTER_ERROR = Data.define(:attribute, :full_message)
+    DEFAULT_PAGE_SIZE = 10
 
     def initialize(filters = {})
       @filters = filters
     end
 
     def paginated_documents
-      unpaginated_documents.page(page).per(default_page_size)
+      unpaginated_documents.page(page).per(DEFAULT_PAGE_SIZE)
     end
 
     def errors
@@ -42,10 +43,6 @@ module ContentBlockManager
 
     def page
       @filters[:page].presence || 1
-    end
-
-    def default_page_size
-      10
     end
 
     def is_date_present?(date_key)
