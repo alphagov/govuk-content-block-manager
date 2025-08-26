@@ -84,7 +84,7 @@ module Workflow::ShowMethods
   end
 
   def back_path
-    content_block_manager.content_block_manager_content_block_workflow_path(
+    content_block_manager_content_block_workflow_path(
       @content_block_edition,
       step: previous_step.name,
     )
