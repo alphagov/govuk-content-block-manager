@@ -17,7 +17,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <%= render(
-          ContentBlockManager::ContentBlockEdition::Show::ConfirmSummaryCardComponent.new(
+          ContentBlockManager::ContentBlock::Edition::Show::ConfirmSummaryCardComponent.new(
             content_block_edition: @content_block_edition,
             ),
           ) %>
@@ -36,13 +36,13 @@
 
     <% unless @content_block_edition.document.is_new_block? %>
       <%= render(
-            ContentBlockManager::ContentBlockEdition::Show::NotesSummaryCardComponent.new(
+            ContentBlockManager::ContentBlock::Edition::Show::NotesSummaryCardComponent.new(
               content_block_edition: @content_block_edition,
               ),
             ) %>
 
       <%= render(
-            ContentBlockManager::ContentBlockEdition::Show::PublicationDetailsSummaryCardComponent.new(
+            ContentBlockManager::ContentBlock::Edition::Show::PublicationDetailsSummaryCardComponent.new(
               content_block_edition: @content_block_edition,
             ),
           ) %>

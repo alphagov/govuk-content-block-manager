@@ -8,7 +8,7 @@
 <% end %>
 
 <% if flash[:error] %>
-  <%= render ContentBlockManager::ContentBlockEdition::New::ErrorSummaryComponent.new(
+  <%= render ContentBlockManager::ContentBlock::Edition::New::ErrorSummaryComponent.new(
     error_message: flash[:error],
     ) %>
 <% end %>

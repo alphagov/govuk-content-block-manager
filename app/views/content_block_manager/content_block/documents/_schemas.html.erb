@@ -1,5 +1,5 @@
 <% if flash[:error] %>
-  <%= render ContentBlockManager::ContentBlockEdition::New::ErrorSummaryComponent.new(
+  <%= render ContentBlockManager::ContentBlock::Edition::New::ErrorSummaryComponent.new(
     error_message: flash[:error],
   ) %>
 <% end %>
@@ -7,7 +7,7 @@
 <%= form_with url: content_block_manager.new_document_options_redirect_content_block_manager_content_block_documents_path, method: :post do %>
   <%= hidden_field_tag :block_type, "" %>
 
-  <%= render ContentBlockManager::ContentBlockEdition::New::SelectSchemaComponent.new(
+  <%= render ContentBlockManager::ContentBlock::Edition::New::SelectSchemaComponent.new(
     heading: content_for(:page_title),
     heading_caption: content_for(:context),
     error_message: flash[:error],

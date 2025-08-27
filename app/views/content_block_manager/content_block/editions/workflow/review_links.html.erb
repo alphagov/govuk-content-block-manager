@@ -22,7 +22,7 @@
         method: :put,
         ) do %>
           <%= render(
-                ContentBlockManager::ContentBlockEdition::HostContent::TableComponent.new(
+                ContentBlockManager::ContentBlock::Edition::HostContent::TableComponent.new(
                   caption: "List of locations",
                   host_content_items: @host_content_items,
                   current_page: @page,

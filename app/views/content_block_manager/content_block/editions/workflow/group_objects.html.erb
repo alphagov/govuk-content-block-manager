@@ -10,7 +10,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <% if flash[:error] %>
-      <%= render ContentBlockManager::ContentBlockEdition::New::ErrorSummaryComponent.new(
+      <%= render ContentBlockManager::ContentBlock::Edition::New::ErrorSummaryComponent.new(
         error_message: flash[:error],
         ) %>
     <% end %>
@@ -19,7 +19,7 @@
       @content_block_edition,
       step: @step_name,
       ), method: :put, id: @step_name do %>
-      <%= render ContentBlockManager::ContentBlockEdition::Workflow::GroupComponent.new(
+      <%= render ContentBlockManager::ContentBlock::Edition::Workflow::GroupComponent.new(
         content_block_edition: @content_block_edition,
         subschemas: @subschemas,
       ) %>

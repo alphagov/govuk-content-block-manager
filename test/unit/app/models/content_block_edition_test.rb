@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ContentBlockManager::ContentBlockEditionTest < ActiveSupport::TestCase
+class ContentBlockManager::ContentBlock::EditionTest < ActiveSupport::TestCase
   extend Minitest::Spec::DSL
 
   let(:new_content_id) { SecureRandom.uuid }
