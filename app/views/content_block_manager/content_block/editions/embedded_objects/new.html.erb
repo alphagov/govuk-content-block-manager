@@ -5,7 +5,7 @@
     href: @back_link,
   } %>
 <% end %>
-<% content_for :error_summary, render(Admin::ErrorSummaryComponent.new(object: @content_block_edition, parent_class: "content_block_manager_content_block_edition")) %>
+<% content_for :error_summary, render(ContentBlockManager::Shared::ErrorSummaryComponent.new(object: @content_block_edition, parent_class: "content_block_manager_content_block_edition")) %>
 
 <%= form_with(
       url: content_block_manager.create_embedded_object_content_block_manager_content_block_edition_path(

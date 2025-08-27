@@ -1,6 +1,6 @@
 <% parent_class = "content_block_manager_content_block_edition" %>
 
-<% content_for :error_summary, render(Admin::ErrorSummaryComponent.new(object: @form.content_block_edition, parent_class:)) %>
+<% content_for :error_summary, render(ContentBlockManager::Shared::ErrorSummaryComponent.new(object: @form.content_block_edition, parent_class:)) %>
 
 <%= form_with(
       url: @form.url,
