@@ -21,7 +21,7 @@ private
     [
       {
         label: "Edit",
-        href: helpers.content_block_manager.content_block_manager_content_block_workflow_path(id: content_block_edition.id, step: :schedule_publishing),
+        href: helpers.content_block_manager_content_block_workflow_path(id: content_block_edition.id, step: :schedule_publishing),
       },
     ]
   end

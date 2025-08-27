@@ -56,7 +56,7 @@ private
     [
       {
         label: "Edit",
-        href: helpers.content_block_manager.edit_embedded_object_content_block_manager_content_block_edition_path(
+        href: helpers.edit_embedded_object_content_block_manager_content_block_edition_path(
           content_block_edition,
           object_type:,
           object_title:,

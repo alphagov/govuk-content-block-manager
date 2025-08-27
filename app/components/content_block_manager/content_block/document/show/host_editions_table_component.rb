@@ -104,7 +104,7 @@ private
     if sort_direction(param) == "ascending"
       param = "-#{param}"
     end
-    helpers.content_block_manager.url_for(only_path: false, params: { order: param }, anchor: TABLE_ID)
+    helpers.url_for(only_path: false, params: { order: param }, anchor: TABLE_ID)
   end
 
   def frontend_path(content_item)
@@ -154,7 +154,7 @@ private
     user_copy = if content_item.last_edited_by_editor
                   link_to(
                     content_item.last_edited_by_editor.name,
-                    helpers.content_block_manager.content_block_manager_user_path(content_item.last_edited_by_editor.uid), { class: "govuk-link" }
+                    helpers.content_block_manager_user_path(content_item.last_edited_by_editor.uid), { class: "govuk-link" }
                   )
                 else
                   "Unknown user"

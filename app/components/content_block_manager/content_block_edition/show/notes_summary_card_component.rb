@@ -22,7 +22,7 @@ private
       actions: [
         {
           label: "Edit",
-          href: helpers.content_block_manager.content_block_manager_content_block_workflow_path(id: content_block_edition.id, step: :internal_note),
+          href: helpers.content_block_manager_content_block_workflow_path(id: content_block_edition.id, step: :internal_note),
         },
       ],
     }
@@ -34,7 +34,7 @@ private
       value: content_block_edition.major_change ? "Yes" : "No",
       actions: [
         {
-          href: helpers.content_block_manager.content_block_manager_content_block_workflow_path(id: content_block_edition.id, step: :change_note),
+          href: helpers.content_block_manager_content_block_workflow_path(id: content_block_edition.id, step: :change_note),
           label: "Edit",
         },
       ],
@@ -48,7 +48,7 @@ private
       actions:
         [
           {
-            href: helpers.content_block_manager.content_block_manager_content_block_workflow_path(id: content_block_edition.id, step: :change_note),
+            href: helpers.content_block_manager_content_block_workflow_path(id: content_block_edition.id, step: :change_note),
             label: "Edit",
           },
         ],
