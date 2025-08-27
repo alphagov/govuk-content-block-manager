@@ -11,7 +11,7 @@ it out for now-->
   } %>
 
   <% if total_pages > 1 %>
-    <% Admin::PaginationHelper.pagination_hash(current_page:, total_pages:, path: base_pagination_path).tap do |hash| %>
+    <% PaginationHelper.pagination_hash(current_page:, total_pages:, path: base_pagination_path).tap do |hash| %>
       <%= render "components/pagination", {
         previous_href: hash[:previous_href],
         next_href: hash[:next_href],
