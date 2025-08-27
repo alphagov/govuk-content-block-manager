@@ -129,15 +129,17 @@ private
             frontend_path(content_item), class: "govuk-link", target: "_blank", rel: "noopener")
   end
 
-  def organisation_link(content_item)
-    return nil if content_item.nil?
-
-    matching_organisation = all_publishing_organisations.find_by_content_id(content_item.publishing_organisation["content_id"])
-    if matching_organisation
-      link_to(matching_organisation.name, admin_organisation_path(matching_organisation), class: "govuk-link")
-    else
-      content_item.publishing_organisation.fetch("title", nil)
-    end
+  def organisation_link(_content_item)
+    # TODO: Migrate code to fetch organisations from Publishing API
+    # return nil if content_item.nil?
+    #
+    # matching_organisation = all_publishing_organisations.find_by_content_id(content_item.publishing_organisation["content_id"])
+    # if matching_organisation
+    #   link_to(matching_organisation.name, admin_organisation_path(matching_organisation), class: "govuk-link")
+    # else
+    #   content_item.publishing_organisation.fetch("title", nil)
+    # end
+    nil
   end
 
   def all_publishing_organisations
