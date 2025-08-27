@@ -7,7 +7,7 @@ require_relative "../support/helpers"
 # end
 
 Given("I am in the staging or integration environment") do
-  Whitehall.stubs(:integration_or_staging?).returns(true)
+  ContentBlockManager.stubs(:integration_or_staging?).returns(true)
 end
 
 When("I click to create an object") do
