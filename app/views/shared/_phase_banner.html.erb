@@ -3,8 +3,7 @@
     message: sanitize("For support, to delete a content block or to give feedback, email
         #{
       mail_to(
-        "email@example.com",
-        "email@example.com",
+        ContentBlockManager.support_email_address,
         {
           class: "govuk-link",
         },
