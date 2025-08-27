@@ -50,6 +50,7 @@ group :test do
   gem "minitest-fail-fast"
   gem "minitest-stub-const"
   gem "mocha"
+  gem "rails-controller-testing"
   gem "simplecov"
   gem "timecop"
   gem "webmock", require: false
