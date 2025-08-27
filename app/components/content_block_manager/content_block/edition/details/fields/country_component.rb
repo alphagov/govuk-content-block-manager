@@ -2,7 +2,9 @@ class ContentBlockManager::ContentBlock::Edition::Details::Fields::CountryCompon
   BLANK_OPTION = "United Kingdom".freeze
 
   def initialize(**args)
-    countries = WorldLocation.geographical.map(&:name)
+    # TODO: Comment out until we have migrated WorldLocations to come from Publishing API
+    # countries = WorldLocation.geographical.map(&:name)
+    countries = ["United Kingdom", "United States of America", "France"]
     super(**args.merge(enum: countries))
   end
 
