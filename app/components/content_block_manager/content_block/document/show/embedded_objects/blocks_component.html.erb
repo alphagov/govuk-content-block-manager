@@ -12,23 +12,25 @@
     <% end %>
   <% else %>
     <div class="app-c-embedded-objects-blocks-component__details-wrapper">
+      <% attributes = capture do %>
+        <div class="app-c-embedded-objects-blocks-component__details-text">
+          These are all the <%= object_name %> attributes that make up the <%= object_name %>. You can use the embed code for each attribute separately in your content if required.
+        </div>
+        <div class="app-c-embedded-objects-blocks-component__details-summary-list">
+          <%= render "govuk_publishing_components/components/summary_list", {
+            items: attribute_rows(:field),
+          } %>
+
+          <% nested_blocks.each do |args| %>
+            <%= render "govuk_publishing_components/components/summary_card", **args %>
+          <% end %>
+        </div>
+      <% end %>
+
       <%= render "govuk_publishing_components/components/details", {
         title: "All #{object_name} attributes",
       } do %>
-        <% capture do %>
-          <div class="app-c-embedded-objects-blocks-component__details-text">
-            These are all the <%= object_name %> attributes that make up the <%= object_name %>. You can use the embed code for each attribute separately in your content if required.
-          </div>
-          <div class="app-c-embedded-objects-blocks-component__details-summary-list">
-            <%= render "govuk_publishing_components/components/summary_list", {
-              items: attribute_rows(:field),
-            } %>
-
-            <% nested_blocks.each do |args| %>
-              <%= render "govuk_publishing_components/components/summary_card", **args %>
-            <% end %>
-          </div>
-        <% end %>
+        <%= attributes %>
       <% end %>
     </div>
   <% end %>
