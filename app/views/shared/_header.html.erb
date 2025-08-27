@@ -1,30 +1,18 @@
 <% environment = GovukPublishingComponents::AppHelpers::Environment.current_acceptance_environment %>
-<% organisation = current_user&.organisation %>
-<% user = current_user %>
 
 <%= render "govuk_publishing_components/components/layout_header", {
-  data_attributes: {
-    ga4_link: '{ "event_name": "navigation", "type": "generic_link" }',
-    module: "ga4-link-tracker",
-    ga4_no_copy: true,
-  },
-  product_name:,
+  product_name: ContentBlockManager.product_name,
   environment: environment,
+  logo_link: content_block_manager_root_path,
   navigation_items: [
-    main_nav_item("Dashboard", "/"),
+    main_nav_item("Blocks", content_block_manager_root_path),
     {
       text: "View website",
-      href: "/",
+      href: ContentBlockManager.public_root,
     },
-    main_nav_item("All users", "/"),
+    {
+      text: "Switch app",
+      href: Plek.external_url_for("signon"),
+    },
   ],
 } %>
-
-<div class="govuk-width-container" data-module="ga4-link-tracker" data-ga4-link='{ "event_name": "navigation", "type": "generic_link" }'>
-  <%= render "components/sub_navigation", {
-    items: [
-      sub_nav_item("New document", "/"),
-      sub_nav_item("Documents", "/"),
-    ],
-  } %>
-</div>

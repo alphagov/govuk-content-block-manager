@@ -13,6 +13,10 @@ module ContentBlockManager
     "feedback-content-modelling@digital.cabinet-office.gov.uk"
   end
 
+  def self.public_root
+    @public_root ||= Plek.website_root
+  end
+
   def self.integration_or_staging?
     website_root = ENV.fetch("GOVUK_WEBSITE_ROOT", "")
     %w[integration staging].any? { |environment| website_root.include?(environment) }
