@@ -60,11 +60,11 @@ class Organisation < ApplicationRecord
   end
 
   def display_name
-    [acronym, name].detect(&:present?)
+    name
   end
 
   def select_name
-    [name, ("(#{acronym})" if acronym.present?), ("[Closed]" if closed?)].compact.join(" ")
+    [name, ("[Closed]" if closed?)].compact.join(" ")
   end
 
   def published_editions
