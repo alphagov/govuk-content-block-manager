@@ -60,7 +60,7 @@ module Workflow::UpdateMethods
 private
 
   def redirect_to_next_step
-    redirect_to content_block_manager.content_block_manager_content_block_workflow_path(
+    redirect_to content_block_manager_content_block_workflow_path(
       id: @content_block_edition.id,
       step: next_step&.name,
     )

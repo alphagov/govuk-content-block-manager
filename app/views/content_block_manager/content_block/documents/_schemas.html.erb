@@ -4,7 +4,7 @@
   ) %>
 <% end %>
 
-<%= form_with url: content_block_manager.new_document_options_redirect_content_block_manager_content_block_documents_path, method: :post do %>
+<%= form_with url: new_document_options_redirect_content_block_manager_content_block_documents_path, method: :post do %>
   <%= hidden_field_tag :block_type, "" %>
 
   <%= render ContentBlockManager::ContentBlock::Edition::New::SelectSchemaComponent.new(
@@ -25,7 +25,7 @@
       text: "Cancel",
       name: "cancel",
       value: "cancel",
-      href: content_block_manager.content_block_manager_content_block_documents_path,
+      href: content_block_manager_content_block_documents_path,
       secondary_solid: true,
     } %>
   </div>

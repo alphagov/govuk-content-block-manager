@@ -37,7 +37,7 @@ class ContentBlockManager::ContentBlock::Editions::WorkflowController < ContentB
 private
 
   def review_url
-    content_block_manager.content_block_manager_content_block_workflow_path(
+    content_block_manager_content_block_workflow_path(
       @content_block_edition,
       step: :review,
     )

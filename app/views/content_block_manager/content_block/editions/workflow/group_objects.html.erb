@@ -15,7 +15,7 @@
         ) %>
     <% end %>
 
-    <%= form_with url: content_block_manager.content_block_manager_content_block_workflow_path(
+    <%= form_with url: content_block_manager_content_block_workflow_path(
       @content_block_edition,
       step: @step_name,
       ), method: :put, id: @step_name do %>
@@ -27,7 +27,7 @@
 
     <%= render("govuk_publishing_components/components/button", {
       text: "Add another #{@group_name.humanize.singularize.downcase}",
-      href: content_block_manager.new_embedded_object_content_block_manager_content_block_edition_path(
+      href: new_embedded_object_content_block_manager_content_block_edition_path(
         @content_block_edition,
         group: @group_name,
       ),

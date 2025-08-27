@@ -2,7 +2,7 @@
 <% content_for :page_title, @content_block_document.title %>
 <% content_for :back_link do %>
   <%= render "govuk_publishing_components/components/back_link", {
-    href: content_block_manager.content_block_manager_content_block_documents_path,
+    href: content_block_manager_content_block_documents_path,
   } %>
 <% end %>
 
@@ -16,7 +16,7 @@
   <div class="govuk-grid-column-one-quarter content-block-manager-header--column-right">
       <%= render "govuk_publishing_components/components/button", {
         text: "Edit #{@content_block_document.block_type.humanize.downcase}",
-        href: content_block_manager.new_content_block_manager_content_block_document_edition_path(@content_block_document),
+        href: new_content_block_manager_content_block_document_edition_path(@content_block_document),
       } %>
   </div>
 </div>

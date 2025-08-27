@@ -23,7 +23,7 @@ class ContentBlockManager::ContentBlock::EditionsController < ContentBlockManage
   def create
     @schema = ContentBlockManager::ContentBlock::Schema.find_by_block_type(block_type_param)
     @content_block_edition = ContentBlockManager::CreateEditionService.new(@schema).call(edition_params, document_id: params[:document_id])
-    redirect_to content_block_manager.content_block_manager_content_block_workflow_path(id: @content_block_edition.id, step: next_step.name)
+    redirect_to content_block_manager_content_block_workflow_path(id: @content_block_edition.id, step: next_step.name)
   rescue ActiveRecord::RecordInvalid => e
     @title = params[:document_id] ? e.record.document.title : "Create content block"
     @form = ContentBlockManager::ContentBlock::EditionForm.for(content_block_edition: e.record, schema: @schema)

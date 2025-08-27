@@ -9,7 +9,7 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <%= form_with url: content_block_manager.content_block_manager_content_block_workflow_path(
+    <%= form_with url: content_block_manager_content_block_workflow_path(
       @content_block_edition,
       step: :internal_note,
       ), method: :put, id: "internal_note" do %>

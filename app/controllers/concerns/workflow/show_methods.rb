@@ -7,7 +7,7 @@ module Workflow::ShowMethods
     @form = ContentBlockManager::ContentBlock::EditionForm::Edit.new(content_block_edition: @content_block_edition, schema: @schema)
 
     @title = @content_block_edition.document.is_new_block? ? "Create #{@form.schema.name}" : "Change #{@form.schema.name}"
-    @back_path = @content_block_edition.document.is_new_block? ? content_block_manager.new_content_block_manager_content_block_document_path : @form.back_path
+    @back_path = @content_block_edition.document.is_new_block? ? new_content_block_manager_content_block_document_path : @form.back_path
 
     render :edit_draft
   end
@@ -42,7 +42,7 @@ module Workflow::ShowMethods
     if @host_content_items.empty?
       referred_from_next_step = request.referer && URI.parse(request.referer).path&.end_with?(next_step.name.to_s)
 
-      redirect_to content_block_manager.content_block_manager_content_block_workflow_path(
+      redirect_to content_block_manager_content_block_workflow_path(
         id: @content_block_edition.id,
         step: referred_from_next_step ? previous_step.name : next_step.name,
       )
@@ -118,7 +118,7 @@ private
       if @subschemas.none? { |subschema| has_embedded_objects(subschema) }
         @group = group_name
         @back_link = back_path
-        @redirect_path = content_block_manager.new_embedded_objects_options_redirect_content_block_manager_content_block_edition_path(@content_block_edition)
+        @redirect_path = new_embedded_objects_options_redirect_content_block_manager_content_block_edition_path(@content_block_edition)
         @context = @content_block_edition.title
 
         render "content_block_manager/content_block/shared/embedded_objects/select_subschema"

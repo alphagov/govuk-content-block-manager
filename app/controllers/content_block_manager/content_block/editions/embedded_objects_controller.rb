@@ -14,11 +14,11 @@ class ContentBlockManager::ContentBlock::Editions::EmbeddedObjectsController < C
     else
       @group = params[:group]
       @subschemas = @schema.subschemas_for_group(@group)
-      @back_link = content_block_manager.content_block_manager_content_block_workflow_path(
+      @back_link = content_block_manager_content_block_workflow_path(
         @content_block_edition,
         step: "#{Workflow::Step::GROUP_PREFIX}#{@group}",
       )
-      @redirect_path = content_block_manager.new_embedded_objects_options_redirect_content_block_manager_content_block_edition_path(@content_block_edition)
+      @redirect_path = new_embedded_objects_options_redirect_content_block_manager_content_block_edition_path(@content_block_edition)
       @context = @content_block_edition.title
 
       if @subschemas.blank?
@@ -75,7 +75,7 @@ class ContentBlockManager::ContentBlock::Editions::EmbeddedObjectsController < C
       )
       redirect_to params[:redirect_url], allow_other_host: false
     else
-      redirect_to content_block_manager.review_embedded_object_content_block_manager_content_block_edition_path(
+      redirect_to review_embedded_object_content_block_manager_content_block_edition_path(
         @content_block_edition,
         object_type: @subschema.block_type,
         object_title: params[:object_title],
@@ -114,13 +114,13 @@ class ContentBlockManager::ContentBlock::Editions::EmbeddedObjectsController < C
 
   def new_embedded_objects_options_redirect
     if params[:object_type].present?
-      flash[:back_link] = content_block_manager.new_embedded_objects_options_redirect_content_block_manager_content_block_edition_path(
+      flash[:back_link] = new_embedded_objects_options_redirect_content_block_manager_content_block_edition_path(
         @content_block_edition,
         group: params.require(:group),
       )
-      redirect_to content_block_manager.new_embedded_object_content_block_manager_content_block_edition_path(@content_block_edition, object_type: params.require(:object_type))
+      redirect_to new_embedded_object_content_block_manager_content_block_edition_path(@content_block_edition, object_type: params.require(:object_type))
     else
-      redirect_to content_block_manager.new_embedded_object_content_block_manager_content_block_edition_path(@content_block_edition, group: params.require(:group)), flash: { error: I18n.t("activerecord.errors.models.content_block_manager/content_block/document.attributes.block_type.blank") }
+      redirect_to new_embedded_object_content_block_manager_content_block_edition_path(@content_block_edition, group: params.require(:group)), flash: { error: I18n.t("activerecord.errors.models.content_block_manager/content_block/document.attributes.block_type.blank") }
     end
   end
 
@@ -132,6 +132,6 @@ private
 
   def embedded_objects_path
     step = @subschema.group ? "#{Workflow::Step::GROUP_PREFIX}#{@subschema.group}" : "#{Workflow::Step::SUBSCHEMA_PREFIX}#{@subschema.id}"
-    content_block_manager.content_block_manager_content_block_workflow_path(@content_block_edition, step:)
+    content_block_manager_content_block_workflow_path(@content_block_edition, step:)
   end
 end

@@ -4,7 +4,7 @@
 <% content_for :error_summary, render(ContentBlockManager::Shared::ErrorSummaryComponent.new(object: @content_block_edition, parent_class: "content_block_manager_content_block_edition")) %>
 
 <%= form_with(
-    url: content_block_manager.embedded_object_content_block_manager_content_block_edition_path(
+    url: embedded_object_content_block_manager_content_block_edition_path(
       @content_block_edition,
       object_type: @subschema.block_type,
       object_title: @object_title,

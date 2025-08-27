@@ -14,14 +14,14 @@ module CanScheduleOrPublish
       publish and return
     end
 
-    redirect_to content_block_manager.content_block_manager_content_block_workflow_path(id: @content_block_edition.id,
-                                                                                        step: :confirmation,
-                                                                                        is_scheduled: true)
+    redirect_to content_block_manager_content_block_workflow_path(id: @content_block_edition.id,
+                                                                  step: :confirmation,
+                                                                  is_scheduled: true)
   end
 
   def publish
     new_edition = ContentBlockManager::PublishEditionService.new.call(@content_block_edition)
-    redirect_to content_block_manager.content_block_manager_content_block_workflow_path(id: new_edition.id, step: :confirmation)
+    redirect_to content_block_manager_content_block_workflow_path(id: new_edition.id, step: :confirmation)
   end
 
   def validate_scheduled_edition
