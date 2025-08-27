@@ -1,0 +1,18 @@
+.support-request-wrapper {
+  display: flex;
+
+  .govuk-button--secondary {
+    margin-left: auto;
+    margin-top: govuk-spacing(6);
+  }
+}
+
+.subschema-listing {
+  &__heading {
+    float: left;
+  }
+
+  .govuk-button {
+    float: right;
+  }
+}
