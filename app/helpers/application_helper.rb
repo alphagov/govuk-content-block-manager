@@ -27,4 +27,15 @@ module ApplicationHelper
   def starts_with_vowel?(word_or_phrase)
     "aeiou".include?(word_or_phrase.downcase[0])
   end
+
+  def taggable_organisations_container(selected_ids)
+    # TODO: Remove this when we move to fetching organisations from Publishing API
+    Organisation.all.map do |o|
+      {
+        text: o.select_name,
+        value: o.id,
+        selected: selected_ids.include?(o.id),
+      }
+    end
+  end
 end
