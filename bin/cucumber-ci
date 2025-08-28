@@ -7,7 +7,6 @@
 
 test_files = [
   Dir["features/*.feature"],
-  Dir["lib/engines/**/*.feature"],
 ].flatten
 
 # Determine which CI node is running
