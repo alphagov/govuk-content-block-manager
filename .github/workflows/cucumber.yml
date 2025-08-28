@@ -1,0 +1,78 @@
+name: Run Cucumber
+
+on: workflow_call
+
+jobs:
+  feature-test-matrix:
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        ci_node_total: [4]
+        ci_node_index: [0, 1, 2, 3]
+    steps:
+      - name: Setup MySQL
+        id: setup-mysql
+        uses: alphagov/govuk-infrastructure/.github/actions/setup-mysql@main
+
+      - name: Setup Redis
+        uses: alphagov/govuk-infrastructure/.github/actions/setup-redis@main
+
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          show-progress: false
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Setup Node
+        uses: alphagov/govuk-infrastructure/.github/actions/setup-node@main
+
+      - name: Cache Playwright Chromium browser
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-browsers-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+
+      - name: Install Playwright Chromium browser (with deps)
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: yarn run playwright install --with-deps chromium
+
+      - name: Install Playwright Chromium browser deps
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: yarn run playwright install-deps chromium
+
+      - name: Precompile assets
+        uses: alphagov/govuk-infrastructure/.github/actions/precompile-rails-assets@main
+
+      - name: Initialize database
+        env:
+          RAILS_ENV: test
+          TEST_DATABASE_URL: ${{ steps.setup-mysql.outputs.db-url }}
+        run: bundle exec rails db:setup
+
+      - name: Run cucumber
+        env:
+          RAILS_ENV: test
+          TEST_DATABASE_URL: ${{ steps.setup-mysql.outputs.db-url }}
+          CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
+          CI_NODE_INDEX: ${{ matrix.ci_node_index }}
+        run: bundle exec ./bin/cucumber-ci
+
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: capybara-screenshots
+          path: tmp/capybara/capybara-*.png
+
+  run-cucumber:
+    name: Run Cucumber
+    needs: feature-test-matrix
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "All feature tests have passed 🚀"

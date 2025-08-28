@@ -1,39 +1,64 @@
 name: CI
 
 on:
-  pull_request:
+  workflow_dispatch: {}
   push:
-    branches: [ main ]
+    branches:
+      - main
+    paths-ignore:
+      - ".git**"
+  pull_request:
 
 jobs:
-  scan_ruby:
-    runs-on: ubuntu-latest
+  codeql-sast:
+    name: CodeQL SAST scan
+    uses: alphagov/govuk-infrastructure/.github/workflows/codeql-analysis.yml@main
+    permissions:
+      security-events: write
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  dependency-review:
+    name: Dependency Review scan
+    uses: alphagov/govuk-infrastructure/.github/workflows/dependency-review.yml@main
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
+  security-analysis:
+    name: Security Analysis
+    uses: alphagov/govuk-infrastructure/.github/workflows/brakeman.yml@main
+    secrets: inherit
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
 
-      - name: Scan for common Rails security vulnerabilities using static analysis
-        run: bin/brakeman --no-pager
+  lint-scss:
+    name: Lint SCSS
+    uses: ./.github/workflows/lintscss.yml
 
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  lint-javascript:
+    name: Lint JavaScript
+    uses: ./.github/workflows/lintjs.yml
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
+  lint-prettier:
+    name: Prettier
+    uses: ./.github/workflows/lintprettier.yml
 
-      - name: Lint code for consistent style
-        run: bin/rubocop -f github
+  lint-ruby:
+    name: Lint Ruby
+    uses: alphagov/govuk-infrastructure/.github/workflows/rubocop.yml@main
 
+  lint-erb:
+    name: Lint ERB
+    uses: ./.github/workflows/linterb.yml
+
+  test-javascript:
+    name: Test JavaScript
+    uses: alphagov/govuk-infrastructure/.github/workflows/jasmine.yml@main
+    with:
+      useWithRails: true
+
+  test-ruby:
+    name: Test Ruby
+    uses: ./.github/workflows/minitest.yml
+
+  test-features:
+    name: Test features
+    uses: ./.github/workflows/cucumber.yml
