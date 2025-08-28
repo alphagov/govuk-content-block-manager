@@ -40,6 +40,11 @@ class ApplicationHelperTest < ActionView::TestCase
       assert_equal linked_author(user, { class: "my-link" }), link_to(user.name, content_block_manager_user_path(user.uid), { class: "my-link" })
     end
 
+    it "returns an unlinked user name if the user does not have a uuid" do
+      user.uid = nil
+      assert_equal linked_author(user), user.name
+    end
+
     it "returns a dash if user is not set" do
       assert_equal linked_author(nil), "-"
     end

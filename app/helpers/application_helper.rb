@@ -12,10 +12,10 @@ module ApplicationHelper
   end
 
   def linked_author(author, link_options = {})
-    if author
+    if author&.uid
       link_to(author.name, content_block_manager_user_path(author.uid), link_options)
     else
-      "-"
+      author&.name || "-"
     end
   end
 
