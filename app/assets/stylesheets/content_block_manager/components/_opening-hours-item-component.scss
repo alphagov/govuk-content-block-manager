@@ -5,14 +5,18 @@
   }
 
   &__input-group {
+    // stylelint-disable-next-line scss/at-extend-no-missing-placeholder
     @extend .govuk-date-input;
   }
 
   &__input-item {
+    // stylelint-disable-next-line scss/at-extend-no-missing-placeholder
     @extend .govuk-date-input__item;
 
     &--time {
+      // stylelint-disable-next-line max-nesting-depth
       select {
+        // stylelint-disable-next-line scss/at-extend-no-missing-placeholder
         @extend .govuk-input--width-3;
         min-width: 0;
       }
@@ -20,9 +24,11 @@
   }
 
   &__time-group {
+    // stylelint-disable-next-line scss/at-extend-no-missing-placeholder
     @extend .govuk-date-input__item;
 
     &--error {
+      // stylelint-disable-next-line scss/at-extend-no-missing-placeholder
       @extend .govuk-form-group--error;
     }
   }

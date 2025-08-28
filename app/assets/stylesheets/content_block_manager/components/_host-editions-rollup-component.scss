@@ -16,12 +16,14 @@
       margin: govuk-spacing(6);
       padding: 0;
 
+      // stylelint-disable-next-line max-nesting-depth
       &__heading {
         @include govuk-font(19, $weight: regular, $line-height: 1);
 
         min-height: 1em;
       }
 
+      // stylelint-disable-next-line max-nesting-depth
       &__context {
         border: none;
         min-height: 0;

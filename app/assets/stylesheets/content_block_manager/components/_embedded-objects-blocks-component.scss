@@ -4,12 +4,14 @@
     font-size: 1em;
   }
 
+  // stylelint-disable-next-line max-nesting-depth
   &__embed-code {
     color: govuk-colour("dark-grey");
   }
 
   &--with-block {
     .app-c-embedded-objects-blocks-component__main-summary-card-wrapper {
+      // stylelint-disable-next-line max-nesting-depth
       .govuk-summary-card {
         border-bottom: none;
         margin-bottom: 0;
@@ -25,6 +27,7 @@
   }
 
   &__details-wrapper {
+    // stylelint-disable-next-line scss/at-extend-no-missing-placeholder
     @extend .govuk-summary-card__content;
     border-left: 1px solid $govuk-border-colour;
     border-right: 1px solid $govuk-border-colour;

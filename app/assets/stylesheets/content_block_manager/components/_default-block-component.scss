@@ -6,6 +6,7 @@
       // Hide the key in the summary list, while keeping it readable for screen reader users
       @include govuk-visually-hidden;
       width: 0;
+      // stylelint-disable-next-line declaration-no-important
       position: relative !important;
     }
 

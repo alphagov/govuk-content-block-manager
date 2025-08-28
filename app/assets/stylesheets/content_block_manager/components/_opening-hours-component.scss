@@ -10,10 +10,12 @@
   }
 
   .gem-c-checkboxes > .govuk-fieldset > .govuk-fieldset__legend {
+    // stylelint-disable-next-line scss/at-extend-no-missing-placeholder
     @extend .govuk-visually-hidden;
   }
 
   .js-add-another__fieldset > .govuk-fieldset > .govuk-fieldset__legend {
+    // stylelint-disable-next-line scss/at-extend-no-missing-placeholder
     @extend .govuk-visually-hidden;
   }
 }

@@ -5,7 +5,7 @@
   }
 
   @mixin chevron($dir) {
-    &:before {
+    &::before {
       border-style: solid;
       border-width: 0.2em 0.2em 0 0;
       content: "";
@@ -32,13 +32,16 @@
 
   .govuk-accordion__controls {
     .govuk-accordion__show-all {
+      // stylelint-disable-next-line max-nesting-depth
       .govuk-accordion__show-all-text {
         @include govuk-font($size: 19, $weight: bold);
         color: govuk-colour("black");
         @include chevron("down");
       }
 
+      // stylelint-disable-next-line max-nesting-depth
       &[aria-expanded="true"] {
+        // stylelint-disable-next-line max-nesting-depth
         .govuk-accordion__show-all-text {
           @include chevron("up");
         }
@@ -47,13 +50,16 @@
   }
 
   .govuk-accordion__section-button {
+    // stylelint-disable-next-line max-nesting-depth
     .govuk-accordion__section-heading-text {
       @include govuk-font($size: 19, $weight: bold);
 
       @include chevron("down");
     }
 
+    // stylelint-disable-next-line max-nesting-depth
     &[aria-expanded="true"] {
+      // stylelint-disable-next-line max-nesting-depth
       .govuk-accordion__section-heading-text {
         @include chevron("up");
       }

@@ -3,7 +3,7 @@
   overflow: hidden;
   position: relative;
 
-  &:before {
+  &::before {
     background-color: $govuk-brand-colour;
     content: "";
     height: 100%;
@@ -16,7 +16,8 @@
 
 .timeline--full {
   margin-bottom: 0;
-  &:before {
+
+  &::before {
     height: calc(100% - 75px);
   }
 }
@@ -30,7 +31,7 @@
   padding-left: govuk-spacing(4);
   position: relative;
 
-  &:before {
+  &::before {
     background-color: $govuk-brand-colour;
     content: "";
     height: 5px;
@@ -70,10 +71,12 @@
   color: govuk-colour("white");
   background: govuk-colour("blue");
   padding: 0.25rem 0.5rem;
+  // stylelint-disable declaration-no-important
   font-size: 1rem !important;
   line-height: 1.25 !important;
   display: inline-block !important;
   margin-bottom: 10px !important;
+  // stylelint-enable declaration-no-important
 }
 
 .timeline__diff-table {
