@@ -49,4 +49,56 @@ class ApplicationHelperTest < ActionView::TestCase
       assert_equal linked_author(nil), "-"
     end
   end
+
+  describe "#taggable_organisations_container" do
+    let(:organisations) { build_list(:organisation, 3) }
+
+    before do
+      Organisation.stubs(:all).returns(organisations)
+    end
+
+    it "returns all organisations" do
+      expected = [
+        {
+          text: organisations[0].name,
+          value: organisations[0].id,
+          selected: false,
+        },
+        {
+          text: organisations[1].name,
+          value: organisations[1].id,
+          selected: false,
+        },
+        {
+          text: organisations[2].name,
+          value: organisations[2].id,
+          selected: false,
+        },
+      ]
+
+      assert_equal taggable_organisations_container([]), expected
+    end
+
+    it "marks selected organisations" do
+      expected = [
+        {
+          text: organisations[0].name,
+          value: organisations[0].id,
+          selected: false,
+        },
+        {
+          text: organisations[1].name,
+          value: organisations[1].id,
+          selected: false,
+        },
+        {
+          text: organisations[2].name,
+          value: organisations[2].id,
+          selected: true,
+        },
+      ]
+
+      assert_equal taggable_organisations_container([organisations[2].id]), expected
+    end
+  end
 end
