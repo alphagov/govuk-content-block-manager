@@ -344,7 +344,7 @@ When("one of the content blocks was updated 2 days ago") do
 end
 
 Then("the published state of the object should be shown") do
-  visit content_block_manager.content_block_manager_content_block_document_path(@content_block.document)
+  visit content_block_manager_content_block_document_path(@content_block.document)
   expect(page).to have_selector(".govuk-summary-list__key", text: "Status")
   expect(page).to have_selector(".govuk-summary-list__value", text: "Published")
 end
@@ -439,4 +439,8 @@ end
 
 Then("the label should be set to {string}") do |label|
   expect(find("#content_block_manager_content_block_edition_details_telephones_telephone_numbers_0_label").value).to eq(label)
+end
+
+And(/^I click save$/) do
+  click_button "Save"
 end
