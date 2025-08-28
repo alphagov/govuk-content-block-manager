@@ -76,13 +76,17 @@ module ContentBlockManager
       documents = documents.where(block_type: ContentBlock::Schema.valid_schemas)
       documents = documents.live
       documents = documents.joins(:latest_edition)
-      documents = documents.with_keyword(@filters[:keyword]) if @filters[:keyword].present?
+      documents = documents.where(id: ids_with_keyword(@filters[:keyword])) if @filters[:keyword].present?
       documents = documents.where(block_type: @filters[:block_type]) if @filters[:block_type].present?
       documents = documents.with_lead_organisation(@filters[:lead_organisation]) if @filters[:lead_organisation].present?
       documents = documents.from_date(from_date) if valid? && from_date
       documents = documents.to_date(to_date) if valid? && to_date
       documents.order("content_block_editions.updated_at DESC")
       documents.distinct
+    end
+
+    def ids_with_keyword(filter)
+      ContentBlock::Document.with_keyword(filter).pluck(:id)
     end
   end
 end

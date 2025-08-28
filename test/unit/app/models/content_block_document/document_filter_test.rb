@@ -32,9 +32,16 @@ class ContentBlockManager::DocumentFilterTest < ActiveSupport::TestCase
 
     describe "when a keyword filter is given" do
       it "returns live documents with keyword" do
+        ids = [1, 2, 3]
+        keyword_stub = mock
+        ContentBlockManager::ContentBlock::Document.expects(:with_keyword)
+                                                   .with("ministry of example")
+                                                   .returns(keyword_stub)
+        keyword_stub.expects(:pluck).with(:id).returns(ids)
+
         document_scope_mock.expects(:page).with(1).returns(document_scope_mock)
 
-        document_scope_mock.expects(:with_keyword).with("ministry of example").returns(document_scope_mock)
+        document_scope_mock.expects(:where).with(id: ids).returns(document_scope_mock)
         ContentBlockManager::ContentBlock::Document::DocumentFilter.new({ keyword: "ministry of example" }).paginated_documents
       end
     end
@@ -61,7 +68,14 @@ class ContentBlockManager::DocumentFilterTest < ActiveSupport::TestCase
       it "returns live documents with the filters given" do
         document_scope_mock.expects(:page).with(1).returns(document_scope_mock)
 
-        document_scope_mock.expects(:with_keyword).with("ministry of example").returns(document_scope_mock)
+        ids = [1, 2, 3]
+        keyword_stub = mock
+        ContentBlockManager::ContentBlock::Document.expects(:with_keyword)
+                                                   .with("ministry of example")
+                                                   .returns(keyword_stub)
+        keyword_stub.expects(:pluck).with(:id).returns(ids)
+
+        document_scope_mock.expects(:where).with(id: ids).returns(document_scope_mock)
         document_scope_mock.expects(:where).with(block_type: %w[email_address]).returns(document_scope_mock)
         document_scope_mock.expects(:with_lead_organisation).with("123").returns(document_scope_mock)
         ContentBlockManager::ContentBlock::Document::DocumentFilter.new(
