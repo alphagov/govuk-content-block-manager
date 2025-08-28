@@ -1,3 +1,5 @@
+require "record_tag_helper/helper"
+
 class ContentBlockManager::ContentBlock::Document::Index::FilterOptionsComponent < ViewComponent::Base
   include ActionView::Helpers::RecordTagHelper
   def initialize(filters:, errors: nil)

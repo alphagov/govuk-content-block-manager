@@ -1,3 +1,5 @@
+require "record_tag_helper/helper"
+
 class ContentBlockManager::ContentBlock::Document::Show::DocumentTimeline::TimelineItemComponent < ViewComponent::Base
   include ActionView::Helpers::RecordTagHelper
 

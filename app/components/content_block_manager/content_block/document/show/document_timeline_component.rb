@@ -1,3 +1,5 @@
+require "record_tag_helper/helper"
+
 class ContentBlockManager::ContentBlock::Document::Show::DocumentTimelineComponent < ViewComponent::Base
   include ActionView::Helpers::RecordTagHelper
   def initialize(content_block_versions:, schema:)
